@@ -1,0 +1,77 @@
+name: CI Workflow
+
+on: [push]
+
+jobs:
+  build-and-test-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Display Python version
+        run: python --version
+
+      - name: Display pip version
+        run: pip --version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip list  # Preverite, ali so vse potrebne knjižnice že nameščene.
+
+      - name: Show directory contents
+        run: ls -l
+
+      - name: Run tests
+        run: |
+          python -m unittest discover tests
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results-linux
+          path: tests/
+
+  build-and-test-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Display Python version
+        run: python --version
+
+      - name: Display pip version
+        run: pip --version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip list  # Preverite, ali so vse potrebne knjižnice že nameščene.
+
+      - name: Show directory contents
+        run: dir
+
+      - name: Run tests
+        run: |
+          python -m unittest discover tests
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results-windows
+          path: tests/
+
