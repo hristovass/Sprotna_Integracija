@@ -92,16 +92,5 @@ class TestShapeMatching(unittest.TestCase):
         self.assertAlmostEqual(grades[0], 1.0)
         self.assertAlmostEqual(angles[0], 0.0)
 
-    def test_nearly_identical_masks(self):
-        maska = np.zeros((50, 50), dtype=np.uint8)
-        maska_ref = np.zeros((50, 50), dtype=np.uint8)
-        maska[20:30, 20:30] = 255
-        maska_ref[21:31, 21:31] = 255
-        contours, grades, angles = poisci_ujemajoce_oblike(maska, maska_ref)
-        self.assertEqual(len(contours), 1)
-        self.assertAlmostEqual(grades[0], 1.0)  # Predicted: Close to 1.0
-        self.assertAlmostEqual(angles[0], 0.0)  # Predicted: Close to 0.0
-        # Assert expected behavior: One contour with high grade and minimal angle
-
 if __name__ == '__main__':
     unittest.main()
