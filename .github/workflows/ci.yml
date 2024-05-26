@@ -13,7 +13,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.12'
 
       - name: Display Python version
         run: python --version
@@ -24,7 +24,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip list  # Preverite, ali so vse potrebne knjižnice že nameščene.
+          pip install numpy
+          pip install -r requirements.txt
+          pip list  # Check if all necessary libraries are installed
 
       - name: Show directory contents
         run: ls -l
@@ -49,7 +51,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.12'
 
       - name: Display Python version
         run: python --version
@@ -60,7 +62,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip list  # Preverite, ali so vse potrebne knjižnice že nameščene.
+          pip install numpy
+          pip install -r requirements.txt
+          pip list  # Check if all necessary libraries are installed
 
       - name: Show directory contents
         run: dir
@@ -74,4 +78,3 @@ jobs:
         with:
           name: test-results-windows
           path: tests/
-
