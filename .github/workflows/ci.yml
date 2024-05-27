@@ -90,4 +90,4 @@ jobs:
         python-version: '3.8'
 
     - name: Run script locally
-      run: python Naloga02.py        
+      run: python vaje1.py        
